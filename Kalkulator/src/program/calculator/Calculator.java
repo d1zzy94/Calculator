@@ -1,18 +1,36 @@
 package program.calculator;
+
 import java.util.StringTokenizer;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Klasa Calculator oblicza dane na podstawie
+ * pobranego wiersza i zwraca wynik
+ * 
+ * @author Michal Studzinski
+ *
+ */
 public class Calculator 
 {  
-	//zmienna przechowujaca ciag znakow (tokenow)
+
+	/**
+	 * zmienna przechowujaca ciag znakow (tokenow)
+	 */
     private StringTokenizer tokenizer;  
-    //zmienna przechowujaca aktualny znak (token)
+    /**
+	 * zmienne przechowujaca aktualny token
+     */
     private String token;  
-    //zmienna powiadamiajaca o bledach
+    /**
+     * zmienna powiadamiajaca o bledach
+     */
     private int error;
     
-	//konstruktor domyslny    
+    /**
+     * Konstruktor domyslny, pobiera linie z dzialaniem
+     * @param line aktualnie pobrana linia 
+     */
     public Calculator(String line)  
     {  
         this.tokenizer = new StringTokenizer(line);  
@@ -20,13 +38,19 @@ public class Calculator
         error = 0;
     }  
     
-    //metoda zwracajaca wynik
+    /**
+     * metoda zwracajaca wynik wszystkich operacji matematycznych
+     * @return wynik operacji matematycznych
+     */
     public double Evaluate()  
     {  
         return Expression();  
     }  
     
-    //metoda zwraca aktualnie przetwarzany token
+    /**
+     * metoda zwraca aktualnie przetwarzany token
+     * @return zwraca aktualny token
+     */
     private double Primary()  
     {  
     	//zmienna z wynikiem ktory zwraca metoda
@@ -55,7 +79,11 @@ public class Calculator
         return result;  
     }  
     
-    //metoda z dzialaniami ktore maja pierszenstwo
+    /**
+     * metoda z dzialaniami ktore maja pierszenstwo (mnozenie
+     * i dzielenie)
+     * @return wynik operacji matematycznej
+     */
     private double Priority()  
     {  
         double nextValue;  
@@ -79,7 +107,12 @@ public class Calculator
         return result; 
     }  
     
-    //metoda z dzialaniami ktore nie maja pierszenstwa
+    /**
+     * metoda z dzialaniami ktore nie maja pierszenstwa
+     * (dodawanie i odejmowanie)
+     * @return wynik operacji matematycznej lub 0 z komunikatem
+     * o bledzie jesli zostaly podane litery zamiast liczb
+     */
     private double Expression()  
     {  
         double nextValue;  
